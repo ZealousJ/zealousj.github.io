@@ -394,10 +394,10 @@ export default function SolarOnePageHomepage() {
           <LogoMark />
           <div className="hidden items-center gap-3 md:flex">
             <a
-              href="tel:0415115729"
+              href="tel:0861509588"
               className="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
             >
-              0415 115 729
+              08 6150 9588
             </a>
             <a
               href="#contact"
@@ -445,10 +445,10 @@ export default function SolarOnePageHomepage() {
                 </a>
 
                 <a
-                  href="tel:0415115729"
+                  href="tel:0861509588"
                   className="rounded-2xl border border-white/20 px-6 py-3 text-sm font-medium text-white transition hover:bg-white/5"
                 >
-                  Call 0415 115 729
+                  Call 08 6150 9588
                 </a>
               </div>
             </div>
@@ -578,9 +578,9 @@ export default function SolarOnePageHomepage() {
               Call or email us today to discuss solar, battery, heat pump and water filtration options for your property. We will help you find a solution that suits your usage, budget and installation needs.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
-              <a href="tel:0415115729" className="rounded-2xl bg-slate-950 px-6 py-5 text-white shadow-sm">
+              <a href="tel:0861509588" className="rounded-2xl bg-slate-950 px-6 py-5 text-white shadow-sm">
                 <div className="text-sm text-slate-400">Phone</div>
-                <div className="mt-1 text-xl font-semibold">0415 115 729</div>
+                <div className="mt-1 text-xl font-semibold">08 6150 9588</div>
               </a>
               <a
                 href="mailto:info@alphaecotech.com.au"
@@ -607,7 +607,7 @@ export default function SolarOnePageHomepage() {
             <div>
               <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Contact</div>
               <div className="mt-4 space-y-2 text-sm">
-                <div>Phone: 0415 115 729</div>
+                <div>Phone: 08 6150 9588</div>
                 <div>Email: info@alphaecotech.com.au</div>
                 <div>Address: Perth, Western Australia</div>
               </div>
@@ -656,6 +656,6 @@ export const smokeTests = [
   },
   {
     name: "contact phone is updated",
-    pass: "0415115729".length === 10,
+    pass: "0861509588".length === 10,
   },
 ];
