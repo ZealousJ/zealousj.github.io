@@ -63,7 +63,7 @@ function LogoMark() {
   return (
     <div className="flex items-center gap-3">
       <img
-        src="/alpha-logo-horizontal.jpg"
+        src="./alpha-logo-horizontal.jpg"
         alt="Alpha Ecotech"
         className="h-12 w-auto object-contain md:h-14"
       />
@@ -606,7 +606,7 @@ export default function SolarOnePageHomepage() {
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
-              <img src="/alpha-logo-horizontal.jpg" alt="Alpha Ecotech" className="h-12 w-auto object-contain" />
+              <img src="./alpha-logo-horizontal.jpg" alt="Alpha Ecotech" className="h-12 w-auto object-contain" />
               <p className="mt-4 text-sm leading-6 text-slate-400">
                 Alpha Ecotech provides solar, battery storage, heat pump hot water and whole-home water filtration systems for Perth homes. Our goal is to help families reduce electricity costs and build more energy-efficient homes.
               </p>
