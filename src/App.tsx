@@ -56,16 +56,16 @@ const process: string[] = [
 const heroImages = [
   "/hero-installation-1.jpg",
   "/hero-installation-2.jpg",
-  "/hero-installation-3.png",
+  "/hero-installation-3.jpg",
 ];
 
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
       <img
-        src="./alpha-logo-horizontal.jpg"
+        src="./alpha-logo-horizontal.png"
         alt="Alpha Ecotech"
-        className="h-12 w-auto object-contain md:h-14"
+        className="h-14 w-auto object-contain md:h-16"
       />
     </div>
   );
@@ -91,6 +91,9 @@ function FlowScreen({ mode }: { mode: FlowMode }) {
   const solarActive = !isEvening;
   const gridExporting = isExport;
   const batteryDischarging = isEvening || isBackup;
+
+  const leftCardClass = "rounded-2xl border p-4 flex flex-1 flex-col justify-between";
+  const rightCardClass = "rounded-2xl border p-4 flex flex-1 flex-col justify-between";
 
   return (
     <div className="w-full px-1">
@@ -126,19 +129,21 @@ function FlowScreen({ mode }: { mode: FlowMode }) {
               HOW SOLAR + BATTERY WORKS
             </div>
             <p className="mt-1 max-w-xl text-xs leading-5 text-slate-400 md:text-sm">
-              A simplified view of how solar generation, the grid, battery storage and household loads interact across different operating conditions.
+              This diagram shows how solar panels, the grid, battery storage and your home work together throughout the day, at night and during power outages.
             </p>
           </div>
 
-          <div className="hidden flex-1 gap-4 xl:grid xl:grid-cols-[0.95fr_auto_1.1fr_auto_1fr] xl:items-center">
-            <div className="grid gap-4 self-stretch">
+          <div className="hidden flex-1 gap-4 xl:grid xl:grid-cols-[minmax(0,1fr)_56px_minmax(0,1.15fr)_56px_minmax(0,1fr)] xl:items-stretch">
+            <div className="grid h-full grid-rows-2 gap-4">
               <div
-                className={`rounded-2xl border p-4 transition-colors ${
+                className={`${leftCardClass} ${
                   solarActive ? "border-yellow-300/20 bg-yellow-400/10" : "border-slate-700/30 bg-slate-800/10"
                 }`}
               >
-                <div className={`text-sm ${solarActive ? "text-yellow-200" : "text-slate-500"}`}>Solar Panels</div>
-                <div className="mt-1.5 text-lg font-semibold text-white">{solarTitle}</div>
+                <div>
+                  <div className={`text-sm ${solarActive ? "text-yellow-200" : "text-slate-500"}`}>Solar Panels</div>
+                  <div className="mt-1.5 text-lg font-semibold text-white">{solarTitle}</div>
+                </div>
                 <div className="mt-3 flex gap-1">
                   {[1, 2, 3, 4].map((i) => (
                     <span
@@ -152,12 +157,14 @@ function FlowScreen({ mode }: { mode: FlowMode }) {
               </div>
 
               <div
-                className={`rounded-2xl border p-4 transition-colors ${
+                className={`${leftCardClass} ${
                   isBackup ? "border-red-400/10 bg-red-400/5" : "border-violet-300/20 bg-violet-400/10"
                 }`}
               >
-                <div className={`text-sm ${isBackup ? "text-red-300" : "text-violet-200"}`}>Grid</div>
-                <div className="mt-1.5 text-lg font-semibold text-white">{gridTitle}</div>
+                <div>
+                  <div className={`text-sm ${isBackup ? "text-red-300" : "text-violet-200"}`}>Grid</div>
+                  <div className="mt-1.5 text-lg font-semibold text-white">{gridTitle}</div>
+                </div>
                 <div className="mt-3 h-14 overflow-hidden rounded-xl border border-white/10 bg-slate-950/60 p-3">
                   <div
                     className={`h-full rounded-md transition-all duration-1000 ${
@@ -175,50 +182,47 @@ function FlowScreen({ mode }: { mode: FlowMode }) {
             </div>
 
             <div className="flex h-full flex-col items-center justify-center gap-16 text-2xl">
-              <span
-                className={`transition-opacity duration-500 ${solarActive ? "animate-bounce text-yellow-300" : "opacity-0"}`}
-              >
+              <span className={`transition-opacity duration-500 ${solarActive ? "animate-bounce text-yellow-300" : "opacity-0"}`}>
                 →
               </span>
-              <span
-                className={`transition-all duration-500 ${isBackup ? "opacity-0" : "animate-bounce text-violet-300"}`}
-              >
+              <span className={`transition-all duration-500 ${isBackup ? "opacity-0" : "animate-bounce text-violet-300"}`}>
                 {gridExporting ? "←" : "→"}
               </span>
             </div>
 
-            <div className="flex h-full flex-col justify-between rounded-[1.75rem] border border-sky-300/20 bg-sky-400/10 p-4">
+            <div className="flex h-full min-h-0 flex-col justify-between rounded-[1.75rem] border border-sky-300/20 bg-sky-400/10 p-4">
               <div>
                 <div className="text-sm text-sky-200">Inverter</div>
                 <div className="mt-1.5 text-lg font-semibold text-white">Hybrid Inverter Controller</div>
               </div>
               <div className="mt-4 rounded-xl border border-white/10 bg-slate-950/60 p-4 text-sm leading-6 text-slate-300">
-                Coordinates power flow between solar panels, the grid, battery storage and household loads.
+                The inverter manages energy flow between solar panels, the grid, battery storage and household loads.
               </div>
             </div>
 
             <div className="flex h-full flex-col items-center justify-center gap-16 text-2xl">
               <span className="animate-bounce text-orange-300">→</span>
-              <span
-                className={`animate-bounce text-emerald-300 transition-transform duration-500 ${
-                  batteryDischarging ? "rotate-180" : ""
-                }`}
-              >
+              <span className={`animate-bounce text-emerald-300 transition-transform duration-500 ${batteryDischarging ? "rotate-180" : ""}`}>
                 →
               </span>
             </div>
 
-            <div className="flex h-full flex-col gap-4">
-              <div className="rounded-2xl border border-orange-300/20 bg-orange-400/10 p-4">
-                <div className="text-sm text-orange-200">Home / Loads</div>
-                <div className="mt-1.5 text-lg font-semibold text-white">{loadTitle}</div>
+            <div className="grid h-full grid-rows-2 gap-4">
+              <div className={`${rightCardClass} border-orange-300/20 bg-orange-400/10`}>
+                <div>
+                  <div className="text-sm text-orange-200">Home / Loads</div>
+                  <div className="mt-1.5 text-lg font-semibold text-white">{loadTitle}</div>
+                </div>
                 <div className="mt-3 flex h-14 items-center justify-center rounded-xl border border-white/10 bg-slate-950/60 px-3 text-center text-sm text-slate-300 animate-[loadpulse_2.6s_ease-in-out_infinite]">
-                  Powering the home in this operating mode
+                  Household Energy Use
                 </div>
               </div>
-              <div className="rounded-2xl border border-emerald-300/20 bg-emerald-400/10 p-4">
-                <div className="text-sm text-emerald-200">Battery Storage</div>
-                <div className="mt-1.5 text-lg font-semibold text-white">{batteryTitle}</div>
+
+              <div className={`${rightCardClass} border-emerald-300/20 bg-emerald-400/10`}>
+                <div>
+                  <div className="text-sm text-emerald-200">Battery Storage</div>
+                  <div className="mt-1.5 text-lg font-semibold text-white">{batteryTitle}</div>
+                </div>
                 <div className="mt-3 h-14 rounded-xl border border-white/10 bg-slate-950/60 p-2">
                   <div
                     className={`h-full rounded-md transition-all duration-1000 ${
@@ -238,19 +242,11 @@ function FlowScreen({ mode }: { mode: FlowMode }) {
 
           <div className="grid flex-1 content-start gap-2.5 xl:hidden">
             <div className="grid grid-cols-2 gap-2">
-              <div
-                className={`rounded-xl border p-3 ${
-                  solarActive ? "border-yellow-300/20 bg-yellow-400/10" : "border-slate-700/30 bg-slate-800/10"
-                }`}
-              >
+              <div className={`rounded-xl border p-3 ${solarActive ? "border-yellow-300/20 bg-yellow-400/10" : "border-slate-700/30 bg-slate-800/10"}`}>
                 <div className={`text-xs ${solarActive ? "text-yellow-200" : "text-slate-500"}`}>Solar</div>
                 <div className="mt-1 text-sm font-semibold text-white">{solarTitle}</div>
               </div>
-              <div
-                className={`rounded-xl border p-3 ${
-                  isBackup ? "border-red-400/10 bg-red-400/5" : "border-violet-300/20 bg-violet-400/10"
-                }`}
-              >
+              <div className={`rounded-xl border p-3 ${isBackup ? "border-red-400/10 bg-red-400/5" : "border-violet-300/20 bg-violet-400/10"}`}>
                 <div className={`text-xs ${isBackup ? "text-red-300" : "text-violet-200"}`}>Grid</div>
                 <div className="mt-1 text-sm font-semibold text-white">{gridTitle}</div>
               </div>
@@ -463,9 +459,7 @@ export default function SolarOnePageHomepage() {
                   {heroImages.map((image, index) => (
                     <div
                       key={image}
-                      className={`absolute inset-0 transition-opacity duration-700 ${
-                        heroImageIndex === index ? "opacity-100" : "opacity-0"
-                      }`}
+                      className={`absolute inset-0 transition-opacity duration-700 ${heroImageIndex === index ? "opacity-100" : "opacity-0"}`}
                     >
                       <img
                         src={image}
@@ -486,9 +480,7 @@ export default function SolarOnePageHomepage() {
                           key={index}
                           type="button"
                           onClick={() => setHeroImageIndex(index)}
-                          className={`h-2.5 rounded-full transition-all ${
-                            heroImageIndex === index ? "w-8 bg-yellow-400" : "w-2.5 bg-white/40"
-                          }`}
+                          className={`h-2.5 rounded-full transition-all ${heroImageIndex === index ? "w-8 bg-yellow-400" : "w-2.5 bg-white/40"}`}
                           aria-label={`Show installation image ${index + 1}`}
                         />
                       ))}
@@ -606,7 +598,7 @@ export default function SolarOnePageHomepage() {
         <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
           <div className="grid gap-10 md:grid-cols-3">
             <div>
-              <img src="./alpha-logo-horizontal.jpg" alt="Alpha Ecotech" className="h-12 w-auto object-contain" />
+              <img src="./alpha-logo-horizontal.png" alt="Alpha Ecotech" className="h-14 w-auto object-contain md:h-16" />
               <p className="mt-4 text-sm leading-6 text-slate-400">
                 Alpha Ecotech provides solar, battery storage, heat pump hot water and whole-home water filtration systems for Perth homes. Our goal is to help families reduce electricity costs and build more energy-efficient homes.
               </p>
